@@ -26,3 +26,31 @@ def main():
         task3(args.filepath, args.overall, args.output)
     elif args.interactive:
         task4(args.filepath)
+
+
+def write_output_medals_to_file(filename: str, data: list):
+    with open(filename, 'w') as f:
+        for line in data:
+            if 'Medals' not in line:
+                f.write(f'{line["Record"]}\n')
+            else:
+                f.write(f'Medals: {line["Medals"]}')
+
+
+def write_totals_to_file(filename: str, data: dict):
+    with open(filename, 'w') as f:
+        for k, v in data.items():
+            f.write(f'{k} - Gold: {v["Gold"]} - Silver: {v["Silver"]} - Bronze: {v["Bronze"]}\n')
+
+
+def print_medals(result: list):
+    for line in result:
+        if 'Medals' not in line:
+            print(f'{line["Record"]}')
+        else:
+            print(f'Medals: {line["Medals"]}')
+
+
+def print_totals(result: dict):
+    for k, v in result.items():
+        print(f'{k} - Gold: {v["Gold"]} - Silver: {v["Silver"]} - Bronze: {v["Bronze"]}')
